@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a0a1a 0%, #2d1b2d 30%, #4a2040 60%, #6b2d5b 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Floating hearts */
+#hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.7;
+    animation: float-up linear forwards;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Music player */
+.music-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 182, 193, 0.6);
+    background: rgba(255, 105, 180, 0.2);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+
+.music-btn:hover {
+    background: rgba(255, 105, 180, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+}
+
+.music-btn.playing {
+    animation: pulse-music 1.5s infinite;
+    background: rgba(255, 105, 180, 0.5);
+}
+
+@keyframes pulse-music {
+    0%, 100% { box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(255, 105, 180, 0.8); }
+}
+
+/* Main container */
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+    text-align: center;
+}
+
+/* Header */
+.header {
+    margin-bottom: 50px;
+    animation: fadeInDown 1.2s ease-out;
+}
+
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5.5rem;
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493, #ff69b4);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite, glow-text 2s ease-in-out infinite alternate;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(255, 105, 180, 0.5);
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glow-text {
+    from { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.4)); }
+    to { filter: drop-shadow(0 0 25px rgba(255, 20, 147, 0.7)); }
+}
+
+.heart-emoji {
+    font-size: 2.5rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.3); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.2); }
+    60% { transform: scale(1); }
+}
+
+.date {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #ffb6c1;
+    letter-spacing: 6px;
+    margin-top: 15px;
+    opacity: 0.9;
+    animation: fadeIn 2s ease-out 0.5s both;
+}
+
+/* Letter */
+.letter {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 24px;
+    padding: 45px 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 1.5s ease-out 0.3s both;
+    text-align: left;
+    line-height: 1.9;
+}
+
+.letter p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: #ffe4ec;
+    margin-bottom: 28px;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.letter p:last-of-type {
+    margin-bottom: 20px;
+}
+
+.final-heart {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Footer */
+.footer {
+    margin-top: 50px;
+    animation: fadeIn 2s ease-out 1s both;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #ff69b4;
+    letter-spacing: 2px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .name {
+        font-size: 3.8rem;
+    }
+    
+    .container {
+        padding: 40px 20px 60px;
+    }
+    
+    .letter {
+        padding: 30px 22px;
+    }
+    
+    .letter p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+    
+    .date {
+        font-size: 1.15rem;
+        letter-spacing: 3px;
+    }
+    
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* Soft sparkle overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 182, 193, 0.25), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.2), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255, 105, 180, 0.2), transparent),
+        radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.15), transparent);
+    background-size: 200px 200px;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes sparkle {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
